@@ -20,6 +20,8 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	UPROPERTY(EditDefaultsOnly, Category = Projectile)
+		TSubclassOf<class AFPSProjectile> ProjectileClass;
 
 public:	
 	// Called every frame
@@ -37,6 +39,10 @@ public:
 		void StopJump();
 	UPROPERTY(VisibleAnywhere)
 		UCameraComponent* FPSCameraComponent;
-	UPROPERTY(VisibleDefaultsOnly, category = Mesh)
+	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
 		USkeletalMeshComponent* FPSMesh;
+	UFUNCTION()
+		void Fire();
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category=Gameplay)
+		FVector MuzzleOffset;
 };

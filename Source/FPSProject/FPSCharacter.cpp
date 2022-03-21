@@ -59,8 +59,9 @@ void AFPSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 }
 void AFPSCharacter::MoveForward(float Value)
 {
+	//获取control的旋转体获得的方向会受到摄像机视角的影响，而getactorforwardvector不会
 	FVector Direction = FRotationMatrix(Controller->GetControlRotation()).GetScaledAxis(EAxis::X);
-	AddMovementInput(Direction, Value);
+	AddMovementInput(GetActorForwardVector(), Value);
 }//向前移动函数
 void AFPSCharacter::MoveRight(float Value) {
 	FVector Direction = FRotationMatrix(Controller->GetControlRotation()).GetScaledAxis(EAxis::Y);
